@@ -1,28 +1,44 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+  <v-app>
+    <v-app-bar app color="primary" dark>
+      <div class="d-flex align-center">
+        <span id="res" class="mr-1 display-1">Restaurante</span>
+        <span id="denny" class="mr-2">Denny's</span>
+      </div>
+
+      <v-spacer></v-spacer>
+
+      <v-btn target="_blank" text>
+        <span id="ped" class="mr-2">PEDIDOS</span>
+      </v-btn>
+    </v-app-bar>
+
+    <v-main>
+      <listaProductos></listaProductos>
+      <contact></contact>
+    </v-main>
+  </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import contact from "./components/contact.vue";
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
-}
-</script>
+  components: { contact },
+  name: "App",
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+  data: () => ({
+    //
+  }),
+};
+</script>
+<style lang="sass">
+@import url("https://fonts.googleapis.com/css2?family=Pattaya&display=swap")
+#denny
+  font-family: "Pattaya", sans-serif
+  margin-top: 5%
+  font-size: 27px
+#ped
+  font-size: 20px
+body
+  background-color: #EDEDED
 </style>
