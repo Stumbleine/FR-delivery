@@ -14,16 +14,17 @@
     </v-app-bar>
 
     <v-main>
-      <listaProductos></listaProductos>
-      <contact></contact>
+      <v-container fluid>
+        <v-fade-transition mode="out-in">
+          <router-view></router-view>
+        </v-fade-transition>
+      </v-container>
     </v-main>
   </v-app>
 </template>
 
 <script>
-import contact from "./components/contact.vue";
 export default {
-  components: { contact },
   name: "App",
 
   data: () => ({
@@ -39,6 +40,4 @@ export default {
   font-size: 27px
 #ped
   font-size: 20px
-body
-  background-color: #EDEDED
 </style>

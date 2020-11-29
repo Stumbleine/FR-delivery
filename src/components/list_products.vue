@@ -23,54 +23,30 @@
           </v-btn>
         </v-row>
       </v-col>
-      <v-btn
-        :to="{ name: 'Crear' }"
-        class="ml-15"
-        x-large
-        fab
-        dark
-        color="indigo"
-      >
-        <v-icon dark> mdi-plus </v-icon>
-      </v-btn>
+
+      <Crear></Crear>
     </v-row>
+
     <v-divider></v-divider>
-    <v-row>
-      <v-col>
+    <!--a> Tarjeta<a-->
+
+    <v-row no-gutters>
+      <v-col v-for="n in 5" :key="n" cols="12" sm="auto">
         <Tarjeta />
       </v-col>
     </v-row>
-    <v-dialog v-model="dialog" max-width="400">
-      <v-card-title> ¿Esta seguro de eliminar este producto? </v-card-title>
-      <v-card-actions>
-        <v-spacer></v-spacer>
-
-        <v-btn color="green darken-1" text @click="dialog = false">
-          Cancelar
-        </v-btn>
-        <v-btn color="error" text @click="confirmarBorrado(id)">
-          <a @click="snack = true">Aceptar</a>
-        </v-btn>
-      </v-card-actions>
-    </v-dialog>
-
-    <v-snackbar v-model="snack"
-      >{{ textSnack }}
-      <template v-slot:action="{ attrs }">
-        <v-btn color="success" text v-bind="attrs" @click="snackbar = false">
-          Cerrar
-        </v-btn>
-      </template>
-    </v-snackbar>
   </v-container>
 </template>
 
 <script>
+//import axios from "axios";
 import Tarjeta from "./card_product";
+import Crear from "./crear_producto";
 export default {
   name: "listaProductos",
   components: {
     Tarjeta,
+    Crear,
   },
 
   data: () => ({}),

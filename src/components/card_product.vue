@@ -6,15 +6,14 @@
         height="200px"
         src="https://cdn.vuetifyjs.com/images/cards/docks.jpg"
       >
-        <v-row justify="end" class="mr-3 mb-3">
-          <v-icon :to="{ name: 'Editar' }" color="white" class="mr-3"
-            >fas fa-edit</v-icon
-          >
-          <v-icon @click.stop="dialog = true" color="red"
+        <div class="d-flex justify-end mr-3 mb-2">
+          <Editar class="mr-5"></Editar>
+          <v-icon color="red" @click.stop="dialog = true"
             >fas fa-trash-alt</v-icon
           >
-        </v-row>
+        </div>
       </v-img>
+
       <v-card-title>Chicharron</v-card-title>
       <v-card-text class="font-weight-normal black--text">
         <div>Tamaño: <a class="grey--text text--darken-2"> Familiar</a></div>
@@ -38,21 +37,68 @@
         </v-row>
       </v-card-actions>
     </v-card>
+
+    <!--a> Diaologo para eliminar<a-->
+    <v-dialog v-model="dialog" max-width="420">
+      <v-card>
+        <v-card-title> ¿Esta seguro de eliminar este producto? </v-card-title>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn color="blue darken-1" text @click="dialog = false">
+            Cancelar
+          </v-btn>
+          <v-btn color="error" @click="confirmarBorrado(id)">
+            <span @click="snack = true">Aceptar</span>
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+    <!--a> mensaje de borrado exitoso<a-->
+    <v-snackbar color="success" v-model="snack"
+      >{{ textSnack }}
+      <template v-slot:action="{ attrs }">
+        <v-btn text v-bind="attrs" @click="snack = false"> Cerrar </v-btn>
+      </template>
+    </v-snackbar>
+    <!--a> fin borrado<a-->
   </v-container>
 </template>
-//separacion
+
 
 <script>
+import axios from "axios";
+import Editar from "./edit_product";
+//import Eliminar from "./eliminar.vue";
 export default {
   name: "Tarjeta",
-  data: () => ({
-    absol: true,
-    over: false,
-    dialog: false,
-    multiLine: true,
-    snack: false,
-    textSnack: "El producto se elimino correctamente",
-  }),
+  components: {
+    Editar,
+    // Eliminar,
+  },
+  data() {
+    return {
+      dialog: false,
+      absol: true,
+      over: false,
+      snack: false,
+
+      textSnack: "¡Registro Eliminado!",
+    };
+  },
+  methods: {
+    confirmarBorrado(id) {
+      axios
+        .delete("http://localhost/apirest/articulos?id=" + id)
+        .then(() => {
+          this.obtenerArticulos();
+          this.dialog = false;
+          this.snackbar = true;
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    },
+  },
 };
 </script>
 <style lang="sass" scoped>
