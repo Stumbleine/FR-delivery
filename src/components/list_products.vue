@@ -28,11 +28,21 @@
     </v-row>
 
     <v-divider></v-divider>
-    <!--a> Tarjeta<a-->
 
     <v-row no-gutters>
-      <v-col v-for="n in 5" :key="n" cols="12" sm="auto">
-        <Tarjeta />
+      <v-col
+        v-for="product in products"
+        :key="product"
+        cols="12"
+        style="background-color: green"
+        sm="auto"
+      >
+        <Tarjeta
+          v-bind:nombre="product.name"
+          v-bind:descripcion="product.descrip"
+          v-bind:precio="product.price"
+        >
+        </Tarjeta>
       </v-col>
     </v-row>
   </v-container>
@@ -48,8 +58,52 @@ export default {
     Tarjeta,
     Crear,
   },
-
-  data: () => ({}),
+  data() {
+    return {
+      products: [
+        {
+          name: "pizza",
+          descrip: "pequeño",
+          price: 22,
+        },
+        {
+          name: "Chicharron",
+          descrip: "pequeño",
+          price: 22,
+        },
+        {
+          name: "pizza",
+          descrip: "pequeño",
+          price: 22,
+        },
+        {
+          name: "pizza",
+          descrip: "pequeño",
+          price: 22,
+        },
+        {
+          name: "pizza",
+          descrip: "pequeño",
+          price: 22,
+        },
+        {
+          name: "pizza",
+          descrip: "pequeño",
+          price: 22,
+        },
+        {
+          name: "pizza",
+          descrip: "pequeño",
+          price: 22,
+        },
+        {
+          name: "pizza",
+          descrip: "pequeño",
+          price: 22,
+        },
+      ],
+    };
+  },
 };
 </script>
 <style lang="sass">

@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <v-card class="mx-auto mt-4" max-width="300" elevation="4">
+    <v-card class="mx-3 mt-4" max-width="300" elevation="4">
       <v-img
         class="white--text align-end"
         height="200px"
@@ -14,10 +14,15 @@
         </div>
       </v-img>
 
-      <v-card-title>Chicharron</v-card-title>
+      <v-card-title>{{ nombre }}</v-card-title>
       <v-card-text class="font-weight-normal black--text">
-        <div>Tamaño: <a class="grey--text text--darken-2"> Familiar</a></div>
-        <div>PRECIO: <a class="red--text"> Bs. 56.43</a></div>
+        <div>
+          Tamaño:
+          <a class="grey--text text--darken-2"> {{ descripcion }}</a>
+        </div>
+        <div>
+          PRECIO: <a class="red--text"> Bs. {{ precio }}</a>
+        </div>
       </v-card-text>
 
       <v-card-actions>
@@ -66,14 +71,18 @@
 
 
 <script>
-import axios from "axios";
+//import axios from "axios";
 import Editar from "./edit_product";
-//import Eliminar from "./eliminar.vue";
+
 export default {
   name: "Tarjeta",
   components: {
     Editar,
-    // Eliminar,
+  },
+  props: {
+    nombre: String,
+    descripcion: String,
+    precio: String,
   },
   data() {
     return {
@@ -81,23 +90,8 @@ export default {
       absol: true,
       over: false,
       snack: false,
-
       textSnack: "¡Registro Eliminado!",
     };
-  },
-  methods: {
-    confirmarBorrado(id) {
-      axios
-        .delete("http://localhost/apirest/articulos?id=" + id)
-        .then(() => {
-          this.obtenerArticulos();
-          this.dialog = false;
-          this.snackbar = true;
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
-    },
   },
 };
 </script>
