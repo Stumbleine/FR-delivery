@@ -31,16 +31,17 @@
 
     <v-row no-gutters>
       <v-col
-        v-for="product in products"
-        :key="product"
+        v-for="producto in productos"
+        :key="producto.id"
         cols="12"
-        style="background-color: green"
         sm="auto"
       >
         <Tarjeta
-          v-bind:nombre="product.name"
-          v-bind:descripcion="product.descrip"
-          v-bind:precio="product.price"
+          v-bind:id="producto.id"
+          v-bind:nombre="producto.nombre"
+          v-bind:tamano="producto.tamaño"
+          :image="producto.image.data"
+          v-bind:precio="producto.precio"
         >
         </Tarjeta>
       </v-col>
@@ -49,7 +50,7 @@
 </template>
 
 <script>
-//import axios from "axios";
+import axios from "axios";
 import Tarjeta from "./card_product";
 import Crear from "./crear_producto";
 export default {
@@ -60,49 +61,25 @@ export default {
   },
   data() {
     return {
-      products: [
-        {
-          name: "pizza",
-          descrip: "pequeño",
-          price: 22,
-        },
-        {
-          name: "Chicharron",
-          descrip: "pequeño",
-          price: 22,
-        },
-        {
-          name: "pizza",
-          descrip: "pequeño",
-          price: 22,
-        },
-        {
-          name: "pizza",
-          descrip: "pequeño",
-          price: 22,
-        },
-        {
-          name: "pizza",
-          descrip: "pequeño",
-          price: 22,
-        },
-        {
-          name: "pizza",
-          descrip: "pequeño",
-          price: 22,
-        },
-        {
-          name: "pizza",
-          descrip: "pequeño",
-          price: 22,
-        },
-        {
-          name: "pizza",
-          descrip: "pequeño",
-          price: 22,
-        },
-      ],
+      id: null,
+      productos: null,
     };
+  },
+  mounted() {
+    this.obtenerProductos();
+  },
+  methods: {
+    obtenerProductos() {
+      axios
+        .get("http://localhost:8080/api/productos")
+        .then((r) => {
+          this.productos = r.data;
+          console.log(this.productos);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    },
   },
 };
 </script>

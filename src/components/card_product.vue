@@ -4,7 +4,7 @@
       <v-img
         class="white--text align-end"
         height="200px"
-        src="https://cdn.vuetifyjs.com/images/cards/docks.jpg"
+        :src="'data:image/jpeg;base64,' + image"
       >
         <div class="d-flex justify-end mr-3 mb-2">
           <Editar class="mr-5"></Editar>
@@ -18,7 +18,7 @@
       <v-card-text class="font-weight-normal black--text">
         <div>
           Tamaño:
-          <a class="grey--text text--darken-2"> {{ descripcion }}</a>
+          <a class="grey--text text--darken-2"> {{ tamano }}</a>
         </div>
         <div>
           PRECIO: <a class="red--text"> Bs. {{ precio }}</a>
@@ -80,9 +80,11 @@ export default {
     Editar,
   },
   props: {
+    id: null,
     nombre: String,
-    descripcion: String,
+    tamano: String,
     precio: String,
+    image: String,
   },
   data() {
     return {
@@ -97,5 +99,5 @@ export default {
 </script>
 <style lang="sass" scoped>
 .icon
-  cursor: pointer
+     cursor: pointer
 </style>

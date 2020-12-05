@@ -3,7 +3,9 @@
     <v-row justify="center">
       <v-dialog v-model="dialog" persistent max-width="600px">
         <template v-slot:activator="{ on, attrs }">
-          <v-icon v-bind="attrs" v-on="on" color="white">fas fa-edit</v-icon>
+          <v-icon v-bind="attrs" v-on="on" color="grey darken-4"
+            >fas fa-edit</v-icon
+          >
         </template>
         <v-card>
           <v-card-title>

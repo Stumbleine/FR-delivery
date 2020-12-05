@@ -14,59 +14,74 @@
           >
             <v-icon dark> mdi-plus </v-icon>
           </v-btn>
-
-          <!--v-btn color="primary" dark v-bind="attrs" v-on="on">
-          Open Dialog
-        </v-btn-->
         </template>
-        <v-card>
-          <v-card-title>
-            <span class="headline">Añadir un producto</span>
-          </v-card-title>
-          <v-card-text>
-            <v-container>
+        <!--a>formulario</a-->
+        <v-card
+          ><form v-on:submit.prevent="guardarProducto">
+            <v-card-title>
+              <span class="headline">Añadir un producto</span>
+            </v-card-title>
+
+            <v-card-text>
+              <!--v-container-->
               <v-row>
                 <v-file-input
                   label="Añade un imagen del producto"
                   filled
                   ms="3"
                   prepend-icon="mdi-camera"
+                  type="file"
+                  ref="file"
+                  id="file"
+                  @change="handleFileUpload()"
                 ></v-file-input>
+                <!--a>campos</a-->
                 <v-col cols="12">
                   <v-text-field
+                    v-model="producto.nombre"
                     label="Nombre del producto"
                     required
                   ></v-text-field>
                 </v-col>
 
-                <v-col cols="12">
-                  <v-text-field label="Descripcion" required></v-text-field>
-                </v-col>
-                <v-col cols="12">
+                <v-col cols="12"
+                  ><!--a>tamaño</a-->
                   <v-text-field
+                    v-model="producto.tamano"
+                    label="Tamaño o descripcion"
+                    required
+                  ></v-text-field>
+                </v-col>
+                <v-col cols="12"
+                  ><!--a>precio</a-->
+                  <v-text-field
+                    v-model="producto.precio"
                     label="Precio"
                     type="Number"
                     required
                   ></v-text-field>
                 </v-col>
-                <v-col cols="12" sm="6">
+                <v-col cols="12" sm="6"
+                  ><!--a>tipo de producto</a-->
                   <v-select
-                    :items="['Platpo extra', 'Pizza', 'Bebidas']"
+                    v-model="producto.tipo"
+                    :items="['Plato extra', 'Pizza', 'Bebida']"
                     label="Tipo de producto*"
-                    required
                   ></v-select>
                 </v-col>
               </v-row>
-            </v-container>
-            <small>Todos los campos son obligatorios</small>
-          </v-card-text>
-          <v-card-actions>
-            <v-spacer></v-spacer>
-            <v-btn color="blue darken" text @click="dialog = false">
-              cerrar
-            </v-btn>
-            <v-btn color="blue darken-3" text="dialog = false"> Guardar </v-btn>
-          </v-card-actions>
+              <small color="red">Todos los campos son obligatorios</small>
+            </v-card-text>
+            <!--a>botones</a-->
+            <v-card-actions>
+              <v-spacer></v-spacer>
+              <v-btn color="blue darken" text @click="dialog = false">
+                cerrar
+              </v-btn>
+              <v-btn type="submit" color="blue darken-3" text> Guardar </v-btn>
+            </v-card-actions>
+          </form>
+          <!--a>fin form</a-->
         </v-card>
       </v-dialog>
     </v-row>
@@ -79,24 +94,45 @@ import axios from "axios";
 export default {
   name: "Crear",
 
-  data: () => ({
-    dialog: false,
-  }),
+  data() {
+    return {
+      dialog: false,
+      producto: {
+        file: "",
+        nombre: "",
+        tamano: "",
+        precio: null,
+        tipo: "",
+      },
+    };
+  },
   methods: {
-    guardarArticulo() {
+    guardarProducto() {
+      this.dialog = false;
       var router = this.$router;
       const formData = new FormData();
-      formData.append("descripcion", this.articulo.descripcion);
-      formData.append("precio", this.articulo.precio);
-      formData.append("stock", this.articulo.stock);
+
+      formData.append("nombre", this.producto.nombre);
+      formData.append("tamano", this.producto.tamano);
+
+      formData.append("tipo", this.producto.tipo);
+      formData.append("file", this.producto.file);
+      formData.append("precio", this.producto.precio);
       axios
-        .post("http://localhost/apirest/articulos", formData)
+        .post("http://localhost:8080/api/productos", formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        })
         .then(() => {
-          router.push("/articulos");
+          router.push("/");
         })
         .catch(function (error) {
           console.log(error);
         });
+    },
+    handleFileUpload() {
+      this.producto.file = this.$refs.file.files;
     },
   },
 };
