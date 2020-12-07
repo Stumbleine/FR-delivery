@@ -30,10 +30,8 @@
                   filled
                   ms="3"
                   prepend-icon="mdi-camera"
-                  type="file"
-                  ref="file"
-                  id="file"
-                  @change="handleFileUpload()"
+                  v-model="producto.image"
+                  accept="image/jpeg, image/jpg"
                 ></v-file-input>
                 <!--a>campos</a-->
                 <v-col cols="12">
@@ -90,6 +88,7 @@
 
 
 <script>
+//import http from "../http-common";
 import axios from "axios";
 export default {
   name: "Crear",
@@ -98,7 +97,7 @@ export default {
     return {
       dialog: false,
       producto: {
-        file: "",
+        image: undefined,
         nombre: "",
         tamano: "",
         precio: null,
@@ -109,31 +108,28 @@ export default {
   methods: {
     guardarProducto() {
       this.dialog = false;
-      var router = this.$router;
+
       const formData = new FormData();
 
       formData.append("nombre", this.producto.nombre);
       formData.append("tamano", this.producto.tamano);
 
       formData.append("tipo", this.producto.tipo);
-      formData.append("file", this.producto.file);
+      formData.append("image", this.producto.image);
       formData.append("precio", this.producto.precio);
       axios
         .post("http://localhost:8080/api/productos", formData, {
           headers: {
-            "Content-Type": "multipart/form-data",
+            "Content-Type": "form-data",
           },
-        })
-        .then(() => {
-          router.push("/");
         })
         .catch(function (error) {
           console.log(error);
         });
     },
-    handleFileUpload() {
+    /*handleFileUpload() {
       this.producto.file = this.$refs.file.files;
-    },
+    },*/
   },
 };
 </script>

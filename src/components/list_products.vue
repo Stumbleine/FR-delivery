@@ -39,7 +39,7 @@
         <Tarjeta
           v-bind:id="producto.id"
           v-bind:nombre="producto.nombre"
-          v-bind:tamano="producto.tamaño"
+          v-bind:tamano="producto.tamano"
           :image="producto.image.data"
           v-bind:precio="producto.precio"
         >
@@ -85,7 +85,7 @@ export default {
 </script>
 <style lang="sass">
 body
-  background-color: #8C9EFF
+     background-color: #8C9EFF
 span
-  font-size: 20px
+     font-size: 20px
 </style>

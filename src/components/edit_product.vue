@@ -63,10 +63,27 @@
 
 
 <script>
+//import Axios from "axios";
 export default {
   name: "Editar",
-  data: () => ({
-    dialog: false,
-  }),
+  props: {
+    id: null,
+  },
+  /* mounted() {
+    Axios.get("http://localhost/api/productos/" + this.id).then((r) => {
+      this.producto = r.data;
+    });
+  },*/
+  data() {
+    return {
+      dialog: false,
+      producto: {
+        nombre: "",
+        tamano: "",
+        precio: null,
+        tipo: "",
+      },
+    };
+  },
 };
 </script>

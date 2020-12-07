@@ -7,8 +7,8 @@
         :src="'data:image/jpeg;base64,' + image"
       >
         <div class="d-flex justify-end mr-3 mb-2">
-          <Editar class="mr-5"></Editar>
-          <v-icon color="red" @click.stop="dialog = true"
+          <Editar class="mr-5" v-bind:id="id"></Editar>
+          <v-icon color="red" @click.stop="dialog = true" @click="ident = id"
             >fas fa-trash-alt</v-icon
           >
         </div>
@@ -52,8 +52,8 @@
           <v-btn color="blue darken-1" text @click="dialog = false">
             Cancelar
           </v-btn>
-          <v-btn color="error" @click="confirmarBorrado(id)">
-            <span @click="snack = true">Aceptar</span>
+          <v-btn color="error" @click="confirmarBorrado(ident)">
+            Aceptar
           </v-btn>
         </v-card-actions>
       </v-card>
@@ -66,6 +66,7 @@
       </template>
     </v-snackbar>
     <!--a> fin borrado<a-->
+    <a>{{ ident }}</a>
   </v-container>
 </template>
 
@@ -73,6 +74,7 @@
 <script>
 //import axios from "axios";
 import Editar from "./edit_product";
+import http from "../http-common";
 
 export default {
   name: "Tarjeta",
@@ -80,7 +82,7 @@ export default {
     Editar,
   },
   props: {
-    id: null,
+    id: String,
     nombre: String,
     tamano: String,
     precio: String,
@@ -88,12 +90,34 @@ export default {
   },
   data() {
     return {
+      ident: null,
       dialog: false,
       absol: true,
       over: false,
       snack: false,
       textSnack: "¡Registro Eliminado!",
     };
+  },
+  methods: {
+    confirmarBorrado(ident) {
+      console.log(ident);
+      http
+        .delete("/productos/" + ident, {
+          headers: {
+            Authorization: "***",
+          },
+          data: {
+            params: "payload",
+          },
+        })
+        .then(() => {
+          this.dialog = false;
+          this.snack = true;
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    },
   },
 };
 </script>
