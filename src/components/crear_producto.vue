@@ -32,6 +32,7 @@
                   prepend-icon="mdi-camera"
                   v-model="producto.image"
                   accept="image/jpeg, image/jpg"
+                  required
                 ></v-file-input>
                 <!--a>campos</a-->
                 <v-col cols="12">
@@ -122,6 +123,9 @@ export default {
           headers: {
             "Content-Type": "form-data",
           },
+        })
+        .then(() => {
+          this.$emit("creado");
         })
         .catch(function (error) {
           console.log(error);

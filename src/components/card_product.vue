@@ -8,8 +8,13 @@
       >
         <div class="d-flex justify-end mr-3 mb-2">
           <Editar class="mr-5" v-bind:id="id"></Editar>
-          <v-icon color="red" @click.stop="dialog = true" @click="ident = id"
-            >fas fa-trash-alt</v-icon
+          <v-btn fab small color="error">
+            <v-icon
+              color="white"
+              @click.stop="dialog = true"
+              @click="ident = id"
+              >fas fa-trash-alt</v-icon
+            ></v-btn
           >
         </div>
       </v-img>
@@ -66,7 +71,6 @@
       </template>
     </v-snackbar>
     <!--a> fin borrado<a-->
-    <a>{{ ident }}</a>
   </v-container>
 </template>
 
@@ -100,20 +104,17 @@ export default {
   },
   methods: {
     confirmarBorrado(ident) {
-      console.log(ident);
       http
-        .delete("/productos/" + ident, {
-          headers: {
-            Authorization: "***",
-          },
-          data: {
-            params: "payload",
-          },
-        })
+        .delete("/api/productos/" + ident)
         .then(() => {
           this.dialog = false;
           this.snack = true;
         })
+        .finally(
+          setTimeout(() => {
+            this.$emit("eliminado");
+          }, 1000)
+        )
         .catch(function (error) {
           console.log(error);
         });

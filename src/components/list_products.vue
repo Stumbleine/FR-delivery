@@ -24,7 +24,7 @@
         </v-row>
       </v-col>
 
-      <Crear></Crear>
+      <Crear @creado="creado"></Crear>
     </v-row>
 
     <v-divider></v-divider>
@@ -37,6 +37,7 @@
         sm="auto"
       >
         <Tarjeta
+          @eliminado="eliminado"
           v-bind:id="producto.id"
           v-bind:nombre="producto.nombre"
           v-bind:tamano="producto.tamano"
@@ -69,6 +70,12 @@ export default {
     this.obtenerProductos();
   },
   methods: {
+    creado() {
+      this.obtenerProductos();
+    },
+    eliminado() {
+      this.obtenerProductos();
+    },
     obtenerProductos() {
       axios
         .get("http://localhost:8080/api/productos")
