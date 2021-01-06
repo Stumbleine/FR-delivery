@@ -89,7 +89,7 @@ export default {
     id: String,
     nombre: String,
     tamano: String,
-    precio: String,
+    precio: Number,
     image: String,
   },
   data() {

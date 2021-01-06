@@ -16,7 +16,7 @@
         <v-card>
           <form v-on:submit.prevent="editar(ide)">
             <v-card-title>
-              <span class="headline">Editar producto {{ ide }}</span>
+              <span class="headline">Editar producto </span>
             </v-card-title>
             <v-card-text>
               <v-row>
@@ -26,12 +26,10 @@
                   ms="3"
                   prepend-icon="mdi-camera"
                   v-model="producto.image"
-                  accept="image/jpeg, image/jpg"
                 ></v-file-input>
                 <v-col cols="12">
                   <v-text-field
                     label="Nombre del producto"
-                    required
                     v-model="producto.nombre"
                   ></v-text-field>
                 </v-col>
@@ -39,7 +37,6 @@
                 <v-col cols="12">
                   <v-text-field
                     label="Descripcion o tamaño"
-                    required
                     v-model="producto.tamano"
                   ></v-text-field>
                 </v-col>
@@ -48,7 +45,6 @@
                     v-model="producto.precio"
                     label="Precio"
                     type="Number"
-                    required
                   ></v-text-field>
                 </v-col>
                 <v-col cols="12" sm="6">
@@ -56,7 +52,6 @@
                     v-model="producto.tipo"
                     :items="['Plato extra', 'Pizza', 'Bebida']"
                     label="Tipo de producto*"
-                    required
                   ></v-select>
                 </v-col>
               </v-row>
@@ -111,6 +106,9 @@ export default {
     recuperar(ide) {
       axios.get("http://localhost:8080/api/productos/" + ide).then((r) => {
         this.producto = r.data;
+        // this.producto.image =
+        //        "data:image/jpeg;base64," + this.producto.image.data;
+        console.log(this.producto.image);
       });
     },
     editar(ide) {
@@ -120,10 +118,13 @@ export default {
       formData.append("tamano", this.producto.tamano);
 
       formData.append("tipo", this.producto.tipo);
-      formData.append("image", this.producto.image);
+      //      if (this.producto.image != "") {
+      formData.append("image", producto.image);
+      //      console.log(this.producto.image);
+
       formData.append("precio", this.producto.precio);
       axios
-        .put("http://localhost:8080/api/productos/" + ide, formData, {
+        .post("http://localhost:8080/api/productos/" + ide, formData, {
           headers: {
             "Content-Type": "form-data",
           },
