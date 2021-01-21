@@ -119,7 +119,7 @@ export default {
 
       formData.append("tipo", this.producto.tipo);
       //      if (this.producto.image != "") {
-      formData.append("image", producto.image);
+      formData.append("image", this.producto.image);
       //      console.log(this.producto.image);
 
       formData.append("precio", this.producto.precio);

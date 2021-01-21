@@ -1,91 +1,74 @@
-<template >
-    <v-container class="xl" style="margin-bottom: 8em;">
+<template>
+    <v-container class="mt-3">
         <v-row class="text-center" id="p-row">
             <v-col class="mb-5 d-flex grey--text text--darken-3">
-                <h2 class="headline font-weight-bold">Nuestro menu</h2>
+                <h2 class="headline font-weight-bold">Lista de platos, pizzas y bebidas</h2>
                 <v-row justify="end">
-                    <v-btn elevation="2" target="_blank" text class="mr-3" @click="filtrar('Plato Extra')">
+                    <v-btn elevation="2" target="_blank" text class="mr-3">
                         <span class="text-lowercase font-italic grey--text text--darken-3">platillos</span>
                     </v-btn>
-                    <v-btn elevation="2" target="_blank" text class="mr-3" @click="filtrar('Pizza')">
+                    <v-btn elevation="2" target="_blank" text class="mr-3">
                         <span class="text-lowercase font-italic grey--text text--darken-3">pizzas</span>
                     </v-btn>
-                    <v-btn elevation="2" target="_blank" text class="mr-3" @click="filtrar('Bebida')">
+                    <v-btn elevation="2" target="_blank" text class="mr-3">
                         <span class="text-lowercase font-italic grey--text text--darken-3">bebidas</span>
                     </v-btn>
                 </v-row>
             </v-col>
+
+            <Crear @creado="creado"></Crear>
         </v-row>
+
         <v-divider></v-divider>
 
         <v-row no-gutters>
-            <!--v-col v-for="n in 20" :key="n" cols="12" sm="auto">
-                <Producto></Producto>
-            </v-col-->
             <v-col v-for="producto in productos" :key="producto.id" cols="12" sm="auto">
-                <Carta
-                    v-if="producto.estado===true"
+                <Tarjeta
+                    @eliminado="eliminado"
                     v-bind:id="producto.id"
                     v-bind:nombre="producto.nombre"
                     v-bind:tamano="producto.tamano"
                     :image="producto.image.data"
                     v-bind:precio="producto.precio"
-                ></Carta>
+                    v-bind:estado="producto.estado"
+                ></Tarjeta>
             </v-col>
         </v-row>
-        <v-btn elevation="2" target="_blank" color="blue" class="text--error" @click="addProducto()">pasar datos</v-btn>
-        <v-divider></v-divider>
-        <Contact></Contact>
     </v-container>
 </template>
 
-
 <script>
 import axios from "axios";
-import Contact from "../elementos/contact.vue";
-import Carta from "./producto.vue";
-import { mapActions, mapMutations } from "vuex";
+import Tarjeta from "./card_product";
+import Crear from "./crear_producto";
 export default {
-    components: { Carta, Contact },
-    name: "Inicio",
+    name: "listaProductos",
+    components: {
+        Tarjeta,
+        Crear,
+    },
     data() {
         return {
             id: null,
             productos: null,
-            p: {
-                nombre: "Chicharon",
-                tamano: "Mediano",
-                precio: 123,
-                cantidad: 2,
-            },
         };
     },
     mounted() {
         this.obtenerProductos();
     },
-
     methods: {
-        ...mapMutations(["agregar"]),
-        ...mapActions([" addProductAction"]),
-        addProducto() {
-            this.$store.state.pro = this.p;
-            this.$store.dispatch("addProductAction");
+        creado() {
+            this.obtenerProductos();
         },
-        filtrar(filtro) {
-            axios
-                .get("http://localhost:8080/productos/" + filtro)
-                .then((r) => {
-                    this.productos = r.data;
-                })
-                .catch(function (error) {
-                    console.log(error);
-                });
+        eliminado() {
+            this.obtenerProductos();
         },
         obtenerProductos() {
             axios
                 .get("http://localhost:8080/api/productos")
                 .then((r) => {
                     this.productos = r.data;
+                    console.log(this.productos);
                 })
                 .catch(function (error) {
                     console.log(error);
@@ -99,6 +82,4 @@ body
      background-color: #8C9EFF
 span
      font-size: 20px
-.contact
-     width: 500px
 </style>
