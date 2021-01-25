@@ -1,5 +1,6 @@
 <template >
     <v-container class="xl" style="margin-bottom: 8em;">
+        <Navigation></Navigation>
         <v-row class="text-center" id="p-row">
             <v-col class="mb-5 d-flex grey--text text--darken-3">
                 <h2 class="headline font-weight-bold">Nuestro menu</h2>
@@ -16,7 +17,7 @@
                 </v-row>
             </v-col>
         </v-row>
-        <v-divider></v-divider>
+    <v-divider></v-divider>
 
         <v-row no-gutters>
             <!--v-col v-for="n in 20" :key="n" cols="12" sm="auto">
@@ -28,12 +29,13 @@
                     v-bind:id="producto.id"
                     v-bind:nombre="producto.nombre"
                     v-bind:tamano="producto.tamano"
+                    
                     :image="producto.image.data"
                     v-bind:precio="producto.precio"
+                    v-bind:tipo="producto.tipo"
                 ></Carta>
             </v-col>
         </v-row>
-        <v-btn elevation="2" target="_blank" color="blue" class="text--error" @click="addProducto()">pasar datos</v-btn>
         <v-divider></v-divider>
         <Contact></Contact>
     </v-container>
@@ -44,20 +46,15 @@
 import axios from "axios";
 import Contact from "../elementos/contact.vue";
 import Carta from "./producto.vue";
-import { mapActions, mapMutations } from "vuex";
+import Navigation from "../elementos/nav_bar"
+
 export default {
-    components: { Carta, Contact },
+    components: { Carta, Contact,Navigation },
     name: "Inicio",
     data() {
         return {
             id: null,
             productos: null,
-            p: {
-                nombre: "Chicharon",
-                tamano: "Mediano",
-                precio: 123,
-                cantidad: 2,
-            },
         };
     },
     mounted() {
@@ -65,12 +62,8 @@ export default {
     },
 
     methods: {
-        ...mapMutations(["agregar"]),
-        ...mapActions([" addProductAction"]),
-        addProducto() {
-            this.$store.state.pro = this.p;
-            this.$store.dispatch("addProductAction");
-        },
+
+        //asdasdasda
         filtrar(filtro) {
             axios
                 .get("http://localhost:8080/productos/" + filtro)

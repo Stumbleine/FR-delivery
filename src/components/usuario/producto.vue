@@ -17,7 +17,7 @@
 
             <v-card-actions>
                 <v-row align="center" justify="space-around">
-                    <v-btn color="primary" class="white--txt" @click="snack = true">Agregar</v-btn>
+                    <v-btn color="primary" class="white--txt" @click="snack = true, addProducto()">Agregar</v-btn>
                 </v-row>
             </v-card-actions>
         </v-card>
@@ -35,22 +35,42 @@
 
 
 <script>
+import { mapActions, mapMutations } from "vuex";
 export default {
     name: "arta",
-
+    
     props: {
         id: String,
         nombre: String,
         tamano: String,
         precio: Number,
+        tipo:String,
         image: String,
     },
     data() {
         return {
             snack: false,
             textSnack: "Agregado correctamente.",
+            p: {
+                nombre: this.nombre,
+                tamano: this.tamano,
+                precio: this.precio,
+                tipo: this.tipo,
+                cantidad: 1,
+                sub_total: this.precio,
+            },
         };
     },
+    methods:{
+        ...mapMutations(["agregar"]),
+        ...mapActions([" addProductAction"]),
+        addProducto() {
+            console.log(this.p);
+            this.$store.state.pro = this.p;
+            this.$store.dispatch("addProductAction");
+            this.$store.dispatch("totalAction")
+        },
+    }
 };
 </script>
 <style lang="sass" scoped>

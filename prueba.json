@@ -1,0 +1,25 @@
+{
+    "listaProductos":[
+        {                
+            "nombre": "Pizza",
+            "tamano": "Mediano",
+            "precio": 100,
+            "cantidad": 1,
+            "subtotal": 100
+        },
+        {        
+            "nombre": "Pizza",
+            "tamano": "Mediano",
+            "precio": 100,
+            "cantidad": 1,
+            "subtotal": 100
+
+        } 
+    ],
+    "TOTAL": 12313,
+    "nameCustomer": "juan",
+    "telefono": 78785463,
+    "maps":[]
+}
+
+{"nombre_cliente":"","numero_cliente":"","fecha":"24-1-2021","hora":"15:34:28","estado":"en camino","lista_pedidos":[{"nombre":"Japonesa","tamano":"Personal","precio":344,"tipo":"Plato extra","cantidad":1,"subtotal":344},{"nombre":"Pizza hawaiana","tamano":"Personal","precio":333,"tipo":"Pizza","cantidad":1,"subtotal":333}],"costo_total":677,"ubicacion":[]}

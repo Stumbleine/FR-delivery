@@ -1,17 +1,6 @@
 <template >
     <v-app>
-        <v-app-bar app color="primary" dark>
-            <div class="d-flex align-center">
-                <span id="res" class="mr-1 display-1">Restaurante</span>
-                <span id="denny" class="mr-2">Denny's</span>
-            </div>
 
-            <v-spacer></v-spacer>
-
-            <v-btn target="_blank" text>
-                <span id="ped" class="mr-2">PEDIDOS</span>
-            </v-btn>
-        </v-app-bar>
 
         <v-main>
             <v-container fluid>

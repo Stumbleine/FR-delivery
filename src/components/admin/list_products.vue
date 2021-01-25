@@ -1,5 +1,6 @@
 <template>
     <v-container class="mt-3">
+        <Navigation></Navigation>
         <v-row class="text-center" id="p-row">
             <v-col class="mb-5 d-flex grey--text text--darken-3">
                 <h2 class="headline font-weight-bold">Lista de platos, pizzas y bebidas</h2>
@@ -41,11 +42,12 @@
 import axios from "axios";
 import Tarjeta from "./card_product";
 import Crear from "./crear_producto";
+import Navigation from "../elementos/nav_bar"
 export default {
     name: "listaProductos",
     components: {
         Tarjeta,
-        Crear,
+        Crear,Navigation
     },
     data() {
         return {
