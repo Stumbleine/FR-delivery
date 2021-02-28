@@ -1,5 +1,5 @@
 <template >
-    <v-app>
+    <v-app style="background:#f0f0f0;">
 
 
         <v-main>
@@ -20,12 +20,3 @@ export default {
     }),
 };
 </script>
-<style lang="sass">
-@import url("https://fonts.googleapis.com/css2?family=Pattaya&display=swap")
-#denny
-     font-family: "Pattaya", sans-serif
-     margin-top: 5%
-     font-size: 27px
-#ped
-     font-size: 20px
-</style>

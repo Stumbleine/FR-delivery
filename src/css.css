@@ -1,13 +1,17 @@
-body{
-     vertical-align: middle;
-     text-align: center;
-     align-items: center;
-     align-content: center;
-     align-self: center;
-     justify-self: start;
-     justify-content: baseline;
-     justify-items: auto;
-     text-justify: auto;
-     vertical-align: auto;
-     marg
+body {
+   vertical-align: middle;
+   text-align: center;
+   align-items: center;
+   align-content: center;
+   align-self: center;
+   justify-self: start;
+   justify-content: baseline;
+   justify-items: auto;
+   text-justify: auto;
+   vertical-align: auto;
+   font-weight: bold;
+   height: min-content;
+   vertical-align: middle;
+   align-content: space-between;
+   cursor: pointer;
 }

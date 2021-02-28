@@ -1,0 +1,187 @@
+{
+   "pedido": [
+      {
+         "nro": 1,
+         "nombre_cliente": "Juan alberto",
+         "numero_cliente": "78443236",
+         "fecha": "26-01-21",
+         "hora": "09:22:41",
+         "estado": "esperando",
+         "lista_pedidos": [
+            {
+               "nombre": "Pizza",
+               "tamano": "Mediano",
+               "precio": 100,
+               "cantidad": 10,
+               "sub_Total": 1000
+            },
+            {
+               "nombre": "Sopa",
+               "tamano": "Completo",
+               "precio": 12,
+               "cantidad": 1,
+               "sub_Total": 12
+            },
+            {
+               "nombre": "CocaCola",
+               "tamano": "Mediano",
+               "precio": 10,
+               "cantidad": 10,
+               "sub_Total": 100
+            }
+         ],
+         "costo_Total": 312,
+         "Ubicacion": ""
+      },
+      {
+         "nro": 2,
+         "nombre_cliente": "Magnolia",
+         "numero_cliente": "78443236",
+         "fecha": "26-01-21",
+         "hora": "09:22:41",
+         "estado": "en camino",
+         "costo_Total": 1213,
+         "Ubicacion": ""
+      },
+      {
+         "nro": 3,
+         "nombre_cliente": "Clara",
+         "numero_cliente": "78443236",
+         "fecha": "26-01-21",
+         "hora": "09:22:41",
+         "estado": "esperando",
+         "costo_Total": 232,
+         "Ubicacion": ""
+      },
+      {
+         "nro": 4,
+         "nombre_cliente": "Julian",
+         "numero_cliente": "78443236",
+         "fecha": "26-01-21",
+         "hora": "09:22:41",
+         "estado": "entregado",
+         "costo_Total": 445,
+         "Ubicacion": ""
+      },
+      {
+         "nro": 2,
+         "nombre_cliente": "Magnolia",
+         "numero_cliente": "78443236",
+         "fecha": "26-01-21",
+         "hora": "09:22:41",
+         "estado": "en camino",
+         "costo_Total": 1213,
+         "Ubicacion": ""
+      },
+      {
+         "nro": 3,
+         "nombre_cliente": "Clara",
+         "numero_cliente": "78443236",
+         "fecha": "26-01-21",
+         "hora": "09:22:41",
+         "estado": "esperando",
+         "costo_Total": 232,
+         "Ubicacion": ""
+      },
+      {
+         "nro": 4,
+         "nombre_cliente": "Julian",
+         "numero_cliente": "78443236",
+         "fecha": "26-01-21",
+         "hora": "09:22:41",
+         "estado": "entregado",
+         "costo_Total": 445,
+         "Ubicacion": ""
+      },
+      {
+         "nro": 2,
+         "nombre_cliente": "Magnolia",
+         "numero_cliente": "78443236",
+         "fecha": "26-01-21",
+         "hora": "09:22:41",
+         "estado": "en camino",
+         "costo_Total": 1213,
+         "Ubicacion": ""
+      },
+      {
+         "nro": 3,
+         "nombre_cliente": "Clara",
+         "numero_cliente": "78443236",
+         "fecha": "26-01-21",
+         "hora": "09:22:41",
+         "estado": "esperando",
+         "costo_Total": 232,
+         "Ubicacion": ""
+      },
+      {
+         "nro": 4,
+         "nombre_cliente": "Julian",
+         "numero_cliente": "78443236",
+         "fecha": "26-01-21",
+         "hora": "09:22:41",
+         "estado": "entregado",
+         "costo_Total": 445,
+         "Ubicacion": ""
+      },
+      {
+         "nro": 2,
+         "nombre_cliente": "Magnolia",
+         "numero_cliente": "78443236",
+         "fecha": "26-01-21",
+         "hora": "09:22:41",
+         "estado": "entregado",
+         "costo_Total": 1213,
+         "Ubicacion": ""
+      },
+      {
+         "nro": 3,
+         "nombre_cliente": "Clara",
+         "numero_cliente": "78443236",
+         "fecha": "26-01-21",
+         "hora": "09:22:41",
+         "estado": "entregado",
+         "costo_Total": 232,
+         "Ubicacion": ""
+      },
+      {
+         "nro": 4,
+         "nombre_cliente": "Julian",
+         "numero_cliente": "78443236",
+         "fecha": "26-01-21",
+         "hora": "09:22:41",
+         "estado": "entregado",
+         "costo_Total": 445,
+         "Ubicacion": ""
+      },
+      {
+         "nro": 2,
+         "nombre_cliente": "Magnolia",
+         "numero_cliente": "78443236",
+         "fecha": "26-01-21",
+         "hora": "09:22:41",
+         "estado": "entregado",
+         "costo_Total": 1213,
+         "Ubicacion": ""
+      },
+      {
+         "nro": 3,
+         "nombre_cliente": "Clara",
+         "numero_cliente": "78443236",
+         "fecha": "26-01-21",
+         "hora": "09:22:41",
+         "estado": "entregado",
+         "costo_Total": 232,
+         "Ubicacion": ""
+      },
+      {
+         "nro": 4,
+         "nombre_cliente": "Julian",
+         "numero_cliente": "78443236",
+         "fecha": "26-01-21",
+         "hora": "09:22:41",
+         "estado": "entregado",
+         "costo_Total": 445,
+         "Ubicacion": "Av. Puerto suarez"
+      }
+   ]
+}

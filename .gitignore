@@ -2,6 +2,7 @@
 node_modules
 /dist
 prueba.json
+css
 
 # local env files
 .env.local

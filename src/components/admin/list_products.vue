@@ -1,6 +1,6 @@
 <template>
     <v-container class="mt-3">
-        <Navigation></Navigation>
+        <Navigation context='admin'></Navigation>
         <v-row class="text-center" id="p-row">
             <v-col class="mb-5 d-flex grey--text text--darken-3">
                 <h2 class="headline font-weight-bold">Lista de platos, pizzas y bebidas</h2>
